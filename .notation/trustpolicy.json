@@ -1,0 +1,19 @@
+{
+    "version": "1.0",
+    "trustPolicies": [
+        {
+            "name": "nholuongut.com",
+            "registryScopes": [
+                "ghcr.io/nholuongut/podinfo-deploy-deploy",
+                "ghcr.io/nholuongut/charts/podinfo"
+            ],
+            "signatureVerification": {
+                "level" : "strict"
+            },
+            "trustStores": [ "ca:nholuongut.com" ],
+            "trustedIdentities": [
+                "x509.subject: C=RO, ST=BU, L=Bucharest, O=Notary, CN=nholuongut.com"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,47 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: podinfo
+  namespace: dev
+  annotations:
+    flux.weave.works/tag.podinfod: glob:*
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: podinfo
+  template:
+    metadata:
+      labels:
+        app: podinfo
+      annotations:
+        prometheus.io/scrape: 'true'
+    spec:
+      containers:
+      - name: podinfod
+        image: quay.io/nholuongut/podinfo-deploy:3.0.1
+        command:
+        - ./podinfo
+        - --port=9898
+        ports:
+        - containerPort: 9898
+        readinessProbe:
+          httpGet:
+            path: /readyz
+            port: 9898
+          initialDelaySeconds: 1
+          periodSeconds: 5
+          failureThreshold: 1
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 9898
+          initialDelaySeconds: 1
+          periodSeconds: 10
+          failureThreshold: 2
+        resources:
+          requests:
+            memory: "32Mi"
+            cpu: "10m"
+

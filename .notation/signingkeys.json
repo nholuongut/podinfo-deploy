@@ -1,0 +1,10 @@
+{
+    "default": "nholuongut.com",
+    "keys": [
+        {
+            "name": "nholuongut.com",
+            "keyPath": "/home/runner/.config/notation/localkeys/notation.key",
+            "certPath": "/home/runner/.config/notation/localkeys/notation.crt"
+        }
+    ]
+}
